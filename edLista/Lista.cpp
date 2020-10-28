@@ -41,9 +41,8 @@ void Lista::mostrar()
 }
 
 void Lista::borrar(int pos)
-{
+{	
 	//Variables 
-	Nodo* borrar;
 	Nodo* reco;
 	Nodo* ante = inicio;
 	//veficar si la lista esta vacia 
@@ -58,6 +57,7 @@ void Lista::borrar(int pos)
 	}
 	else if (pos == 1) {
 		// Eliminar el primer elemento
+		Nodo* borrar;
 		borrar = inicio;
 		inicio = inicio->sig;
 		delete borrar;
@@ -65,25 +65,21 @@ void Lista::borrar(int pos)
 	else if (pos == tamano()) {
 		Nodo* borrarUltimo;
 		// Eliminar el último elemento
-		cout << "Valor del Ultimo elemento " << fin->info << endl;
-		//borrar = fin;
-		//cout << "Valor del elemento a elemento " << borrar->info << endl;
-		reco = inicio->sig;
-		ante = inicio;
+		reco = inicio;
 		cout << "Valor del primer a elemento " << reco->info << endl;
-		int i = 1;
+		int i = 0;
 		while (reco != NULL) {
 			i++;
-			if (i == pos-1) {
-				cout << "Posicion " << i << "sera el nuevo ultimo "<< reco->info<<endl;
-				borrarUltimo = fin;
-				fin = ante;
-			}else{
-				ante = ante->sig;
-				reco = reco->sig;
+			if (i == pos - 1) {
+				fin = reco;
+				fin->sig = NULL;
 			}
+			else if (i==pos){
+				borrarUltimo = reco;
+				delete borrarUltimo;
+			}
+			reco = reco->sig;	
 		}
-
 	}
 	else {
 		reco = inicio->sig;
@@ -94,7 +90,7 @@ void Lista::borrar(int pos)
 			i++;
 			//cout << i<< "-" <<reco->info << endl;
 			if (i == pos) {
-				cout << "Posicion "<< i <<" con valor de "<<reco->info << endl;
+				cout << "Posicion " << i << " con valor de " << reco->info << endl;
 				borrarMedio = reco;
 				ante->sig = reco->sig;
 				delete borrarMedio;
@@ -104,7 +100,7 @@ void Lista::borrar(int pos)
 				ante = ante->sig;
 				reco = reco->sig;
 			}
-			
+
 		}
 	}
 }

@@ -10,6 +10,6 @@ int main()
     l.agregar(1);
     l.borrar(4);
     l.mostrar();
-    l.agregar(11);
-    l.mostrar();
+    //l.agregar(11);
+    //l.mostrar();
 }
